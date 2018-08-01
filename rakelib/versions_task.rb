@@ -64,6 +64,7 @@ module Package
       'dynatrace_one_agent'                 => 'Dynatrace OneAgent',
       'geode_store'                         => 'Geode Tomcat Session Store',
       'google_stackdriver_debugger'         => 'Google Stackdriver Debugger',
+      'google_stackdriver_profiler'         => 'Google Stackdriver Profiler',
       'groovy'                              => 'Groovy',
       'introscope_agent'                    => 'CA Introscope APM Framework',
       'jacoco_agent'                        => 'JaCoCo Agent',
@@ -80,6 +81,7 @@ module Package
       'postgresql_jdbc'                     => 'PostgreSQL JDBC Driver',
       'protect_app_security_provider'       => 'Gemalto ProtectApp Security Provider',
       'redis_store'                         => 'Redis Session Store',
+      'riverbed_appinternals_agent'         => 'Riverbed Appinternals Agent',
       'sky_walking_agent'                   => 'SkyWalking',
       'spring_auto_reconfiguration'         => 'Spring Auto-reconfiguration',
       'spring_boot_cli'                     => 'Spring Boot CLI',
@@ -200,7 +202,9 @@ module Package
         end
       end
 
-      dependency_versions.sort_by { |dependency| dependency['id'] }
+      dependency_versions
+        .uniq { |dependency| dependency['id'] }
+        .sort_by { |dependency| dependency['id'] }
     end
 
     def index_configuration(configuration)
